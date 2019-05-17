@@ -49,7 +49,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="BL3-I6-IQF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ExT-wR-ZhW">
                             <connections>
-                                <action selector="addItem" destination="GFr-mT-pzU" id="sCs-p5-ph0"/>
+                                <segue destination="1ag-nj-yGX" kind="show" id="rxp-FD-q0Z"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -57,6 +57,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tF-4X-0u5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1296.8" y="101.19940029985008"/>
+        </scene>
+        <!--Add Item-->
+        <scene sceneID="dXw-4H-23C">
+            <objects>
+                <tableViewController id="1ag-nj-yGX" customClass="AddItemTableViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="olI-PG-DEp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="7aq-P6-Wlo">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="i7c-vp-t4f">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i7c-vp-t4f" id="Jaj-ZS-I99">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mfV-5U-ZPQ">
+                                                    <rect key="frame" x="4" y="4" width="367" height="35.5"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="mfV-5U-ZPQ" secondAttribute="trailing" constant="4" id="A1D-fE-1iY"/>
+                                                <constraint firstItem="mfV-5U-ZPQ" firstAttribute="top" secondItem="Jaj-ZS-I99" secondAttribute="top" constant="4" id="fvf-mK-yj3"/>
+                                                <constraint firstItem="mfV-5U-ZPQ" firstAttribute="leading" secondItem="Jaj-ZS-I99" secondAttribute="leading" constant="4" id="ucU-Ql-afM"/>
+                                                <constraint firstAttribute="bottom" secondItem="mfV-5U-ZPQ" secondAttribute="bottom" constant="4" id="waO-ZX-kzg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="1ag-nj-yGX" id="aXZ-bd-JP9"/>
+                            <outlet property="delegate" destination="1ag-nj-yGX" id="pol-Db-5c4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Item" largeTitleDisplayMode="never" id="Vqe-gA-5LA">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="iKa-nL-FVU">
+                            <connections>
+                                <action selector="cancel" destination="1ag-nj-yGX" id="b1R-cj-hux"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="7fJ-Cw-emT">
+                            <connections>
+                                <action selector="done" destination="1ag-nj-yGX" id="MoW-l1-bn5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VJQ-4p-B1j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2112" y="101"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rUG-kB-nxm">
