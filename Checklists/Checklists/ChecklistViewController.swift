@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ChecklistViewController: UITableViewController {
+class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
+    
   var items = [ChecklistItem]()
   
   override func viewDidLoad() {
@@ -40,21 +41,7 @@ class ChecklistViewController: UITableViewController {
   
   }
   
-  // MARK:- Actions
-  @IBAction func addItem() {
-    let newRowIndex = items.count
-    
-    let item = ChecklistItem()
-    item.text = "I am a new row"
-    item.toggleChecked()
-    items.append(item)
-    
-    let indexPath = IndexPath(row: newRowIndex, section: 0)
-    let indexPaths = [indexPath]
-    tableView.insertRows(at: indexPaths, with: .automatic)
-  }
-  
-  // MARK:- Table View Data Source
+  // MARK: - Table View Data Source
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return items.count
   }
@@ -69,7 +56,7 @@ class ChecklistViewController: UITableViewController {
     return cell
   }
   
-  // MARK:- Table View Delegate
+  // MARK: - Table View Delegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
     if let cell = tableView.cellForRow(at: indexPath) {
@@ -90,7 +77,30 @@ class ChecklistViewController: UITableViewController {
     tableView.deleteRows(at: indexPaths, with: .automatic)
   }
   
-  // Other functions
+  // MARK: - Navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "AddItem" {
+      let controller = segue.destination as! AddItemViewController
+      controller.delegate = self
+    }
+  }
+  
+  // MARK: - Add Item ViewController Delegate
+  func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+    navigationController?.popViewController(animated: true)
+  }
+  
+  func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+    let newRowIndex = items.count
+    items.append(item)
+    
+    let indexPath = IndexPath(row: newRowIndex, section: 0)
+    let indexPaths = [indexPath]
+    tableView.insertRows(at: indexPaths, with: .automatic)
+    navigationController?.popViewController(animated: true)
+  }
+  
+  // MARK: - Other functions
   
   func configureCheckmark(for cell: UITableViewCell,
                           with item: ChecklistItem) {
