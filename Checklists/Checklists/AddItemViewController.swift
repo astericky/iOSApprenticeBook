@@ -16,11 +16,14 @@ protocol AddItemViewControllerDelegate: class {
 
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
   
-  weak var delegate: AddItemViewControllerDelegate?
-  
   // MARK: - Outlets
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var doneBarButton: UIBarButtonItem!
+  
+  // MARK: - Other Instance Variables
+  weak var delegate: AddItemViewControllerDelegate?
+  var itemToEdit: ChecklistItem?
+  
   
   // MARK: - Actions
   @IBAction func cancel() {
@@ -38,6 +41,11 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     super.viewDidLoad()
     
     navigationItem.largeTitleDisplayMode = .never
+    
+    if let item = itemToEdit {
+      title = "Edit Item"
+      textField.text = item.text
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
